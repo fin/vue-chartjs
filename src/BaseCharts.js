@@ -51,7 +51,7 @@ export function generateChart (chartId, chartType) {
       }
     },
 
-    data () {
+    options () {
       return {
         _chart: null,
         _plugins: this.plugins
@@ -60,28 +60,28 @@ export function generateChart (chartId, chartType) {
 
     methods: {
       addPlugin (plugin) {
-        this.$data._plugins.push(plugin)
+        this.$options._plugins.push(plugin)
       },
       generateLegend () {
-        if (this.$data._chart) {
-          return this.$data._chart.generateLegend()
+        if (this.$options._chart) {
+          return this.$options._chart.generateLegend()
         }
       },
       renderChart (data, options) {
-        if (this.$data._chart) this.$data._chart.destroy()
-        this.$data._chart = new Chart(
+        if (this.$options._chart) this.$options._chart.destroy()
+        this.$options._chart = new Chart(
           this.$refs.canvas.getContext('2d'), {
             type: chartType,
             data: data,
             options: options,
-            plugins: this.$data._plugins
+            plugins: this.$options._plugins
           }
         )
       }
     },
     beforeDestroy () {
-      if (this.$data._chart) {
-        this.$data._chart.destroy()
+      if (this.$options._chart) {
+        this.$options._chart.destroy()
       }
     }
   }
