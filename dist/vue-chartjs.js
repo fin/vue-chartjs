@@ -235,7 +235,6 @@ var reactiveProp = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_chart_js__);
 
 function generateChart(chartId, chartType) {
-  console.log('gC');
   return {
     render: function render(createElement) {
       return createElement('div', {
