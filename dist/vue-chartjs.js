@@ -235,6 +235,7 @@ var reactiveProp = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_chart_js__);
 
 function generateChart(chartId, chartType) {
+  console.log('gC');
   return {
     render: function render(createElement) {
       return createElement('div', {
@@ -276,7 +277,7 @@ function generateChart(chartId, chartType) {
         }
       }
     },
-    data: function data() {
+    options: function options() {
       return {
         _chart: null,
         _plugins: this.plugins
@@ -284,26 +285,26 @@ function generateChart(chartId, chartType) {
     },
     methods: {
       addPlugin: function addPlugin(plugin) {
-        this.$data._plugins.push(plugin);
+        this.$options._plugins.push(plugin);
       },
       generateLegend: function generateLegend() {
-        if (this.$data._chart) {
-          return this.$data._chart.generateLegend();
+        if (this.$options._chart) {
+          return this.$options._chart.generateLegend();
         }
       },
       renderChart: function renderChart(data, options) {
-        if (this.$data._chart) this.$data._chart.destroy();
-        this.$data._chart = new __WEBPACK_IMPORTED_MODULE_0_chart_js___default.a(this.$refs.canvas.getContext('2d'), {
+        if (this.$options._chart) this.$options._chart.destroy();
+        this.$options._chart = new __WEBPACK_IMPORTED_MODULE_0_chart_js___default.a(this.$refs.canvas.getContext('2d'), {
           type: chartType,
           data: data,
           options: options,
-          plugins: this.$data._plugins
+          plugins: this.$options._plugins
         });
       }
     },
     beforeDestroy: function beforeDestroy() {
-      if (this.$data._chart) {
-        this.$data._chart.destroy();
+      if (this.$options._chart) {
+        this.$options._chart.destroy();
       }
     }
   };
